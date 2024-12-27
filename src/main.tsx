@@ -7,7 +7,7 @@ import App from "./App.tsx";
 
 const appConfig: Configuration = {
   auth: {
-    clientId: "89867d53-9305-470c-af53-846d92d77168",
+    clientId: "< your frontend app client id here >",
     authority: "https://login.microsoftonline.com/microsoft.onmicrosoft.com",
     navigateToLoginRequestUrl: true,
     redirectUri: "/",
