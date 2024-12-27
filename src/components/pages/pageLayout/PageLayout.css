@@ -1,37 +1,40 @@
-#root {
-  min-height: 100vh;
-  min-height: 100dvh;
+#layout {
+  height: 100vh;
+  height: 100dvh;
   display: grid;
   grid-template:
-    "head head" 50px
+    "header header" 50px
     "nav  main" 1fr
-    "foot  foot" 50px / auto 1fr;
+    "footer  footer" 50px / auto 1fr;
 
   @media (width < 720px) {
     grid-template:
-      "head" 50px
-      "nav" 50px
+      "header" 50px
       "main" 1fr
-      "foot" 50px / auto;
+      "footer" 50px / auto;
+
+    nav {
+      display: none;
+    }
   }
-}
 
-header {
-  /* background-color: lime; */
-  grid-area: head;
-}
+  header {
+    /* background-color: lime; */
+    grid-area: header;
+  }
 
-nav {
-  /* background-color: lightblue; */
-  grid-area: nav;
-}
+  nav {
+    /* background-color: lightblue; */
+    grid-area: nav;
+  }
 
-main {
-  /* background-color: yellow; */
-  grid-area: main;
-}
+  main {
+    /* background-color: yellow; */
+    grid-area: main;
+  }
 
-footer {
-  /* background-color: red; */
-  grid-area: foot;
+  footer {
+    /* background-color: red; */
+    grid-area: footer;
+  }
 }

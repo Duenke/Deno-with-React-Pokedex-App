@@ -30,9 +30,9 @@ const Nav: FunctionComponent = () => {
       </button>
       <ul style={styles.ul}>
         <Link to={"/"}>Home</Link>
+        <Link to={"/grid"}>Grid</Link>
         <Link to={"/about"}>About</Link>
         <Link to={"/authorized"}>Authorized</Link>
-        <Link to={"/grid"}>Grid</Link>
       </ul>
     </nav>
   );

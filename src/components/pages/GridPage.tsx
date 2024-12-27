@@ -14,13 +14,21 @@ type Styles = { [key: string]: CSSProperties };
 const styles: Styles = {
   main: {
     border: "solid white 1px",
-    position: "relative",
-    overflow: "auto",
+    display: "grid",
+    gridTemplateRows: "50px 1fr 50px",
+    overflow: "hidden",
+  },
+  titleBar: {
+    border: "solid white 1px",
   },
   dataGrid: {
-    position: "absolute",
-    height: "100%",
-    width: "100%",
+    border: "solid white 1px",
+  },
+  pageBar: {
+    border: "solid white 1px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 };
 
@@ -150,41 +158,47 @@ const columns: TableColumnDefinition<Data>[] = [
 const GridPage: FunctionComponent = () => {
   return (
     <main style={styles.main}>
-      <DataGrid
-        items={data}
-        columns={columns}
-        getRowId={(item: Data) => item.id}
-        sortable
-        focusMode="composite"
-        selectionMode="multiselect"
-        style={styles.dataGrid}
-      >
-        <DataGridHeader>
-          <DataGridRow
-            selectionCell={{
-              checkboxIndicator: { "aria-label": "Select all rows" },
-            }}
-          >
-            {({ renderHeaderCell }) => (
-              <DataGridHeaderCell>{renderHeaderCell()}</DataGridHeaderCell>
-            )}
-          </DataGridRow>
-        </DataGridHeader>
-        <DataGridBody<Data>>
-          {({ item, rowId }) => (
-            <DataGridRow<Data>
-              key={rowId}
+      <div style={styles.titleBar}>
+        <h1>Grid Page</h1>
+        <h2>Does not overflow</h2>
+      </div>
+      <div style={styles.dataGrid}>
+        <DataGrid
+          items={data}
+          columns={columns}
+          getRowId={(item: Data) => item.id}
+          sortable
+          focusMode="composite"
+          selectionMode="multiselect"
+        >
+          <DataGridHeader>
+            <DataGridRow
               selectionCell={{
-                checkboxIndicator: { "aria-label": "Select row" },
+                checkboxIndicator: { "aria-label": "Select all rows" },
               }}
             >
-              {({ renderCell }) => (
-                <DataGridCell>{renderCell(item)}</DataGridCell>
-              )}
+              {({ renderHeaderCell }) => <DataGridHeaderCell>{renderHeaderCell()}</DataGridHeaderCell>}
             </DataGridRow>
-          )}
-        </DataGridBody>
-      </DataGrid>
+          </DataGridHeader>
+          <DataGridBody<Data>>
+            {({ item, rowId }) => (
+              <DataGridRow<Data>
+                key={rowId}
+                selectionCell={{
+                  checkboxIndicator: { "aria-label": "Select row" },
+                }}
+              >
+                {({ renderCell }) => <DataGridCell>{renderCell(item)}</DataGridCell>}
+              </DataGridRow>
+            )}
+          </DataGridBody>
+        </DataGrid>
+      </div>
+      <div style={styles.pageBar}>
+        <span>page left</span>
+        <span>1 / 10</span>
+        <span>page right</span>
+      </div>
     </main>
   );
 };

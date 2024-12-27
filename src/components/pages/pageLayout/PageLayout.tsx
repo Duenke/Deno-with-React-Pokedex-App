@@ -1,13 +1,13 @@
-import { FunctionComponent } from "react";
 import "./PageLayout.css";
+import { FunctionComponent } from "react";
+import { Outlet } from "react-router-dom";
 import Header from "./Header.tsx";
 import Footer from "./Footer.tsx";
 import Nav from "./Nav.tsx";
-import { Outlet } from "react-router-dom";
 
 /**
  * This page layout requires a top level structure like:
- * <div id="root">
+ * <div id="layout">
  *  <header> ... </header>
  *  <nav> ... </nav>
  *  <main> ... </main>
@@ -16,13 +16,12 @@ import { Outlet } from "react-router-dom";
  */
 const PageLayout: FunctionComponent = () => {
   return (
-    // This fragment represents the #root for the purposes of CSS.
-    <>
+    <div id="layout">
       <Header />
       <Nav />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 };
 
