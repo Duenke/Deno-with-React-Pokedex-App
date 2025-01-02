@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -11,20 +11,25 @@ import {
   PokemonListPage,
   PokemonPage,
 } from "./pages/index.tsx";
+import { RecentContext } from "./contexts/RecentContext.tsx";
 
 const App: FunctionComponent = () => {
+  const recentlyViewed = useState<string[]>([]);
+
   return (
-    <RouterProvider
-      router={createBrowserRouter(
-        createRoutesFromElements(
-          <Route element={<PageLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="pokemon-list" element={<PokemonListPage />} />
-            <Route path="pokemon/:name" element={<PokemonPage />} />
-          </Route>,
-        ),
-      )}
-    />
+    <RecentContext.Provider value={recentlyViewed}>
+      <RouterProvider
+        router={createBrowserRouter(
+          createRoutesFromElements(
+            <Route element={<PageLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path="pokemon-list" element={<PokemonListPage />} />
+              <Route path="pokemon/:name" element={<PokemonPage />} />
+            </Route>,
+          ),
+        )}
+      />
+    </RecentContext.Provider>
   );
 };
 

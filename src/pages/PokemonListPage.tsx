@@ -1,7 +1,8 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useContext, useEffect, useState } from "react";
 import { PokeAPI } from "pokeapi-types";
-import { Styles } from "../types/styles.ts";
+import { Styles } from "../types/Styles.ts";
 import { Link } from "react-router-dom";
+import { RecentContext } from "../contexts/RecentContext.tsx";
 
 const styles: Styles = {
   main: {
@@ -10,6 +11,8 @@ const styles: Styles = {
     overflow: "auto",
   },
   titleBar: {
+    placeContent: "center",
+    paddingInline: "1em",
     border: "solid white 1px",
   },
   list: {
@@ -41,6 +44,8 @@ const styles: Styles = {
  * All page components must be wrapped in a top level `<main></main>`.
  */
 const PokemonListPage: FunctionComponent = () => {
+  const [_, setRecentlyViewed] = useContext(RecentContext);
+
   const [listUrl, setListUrl] = useState<string>(
     "https://pokeapi.co/api/v2/pokemon",
   );
@@ -72,7 +77,11 @@ const PokemonListPage: FunctionComponent = () => {
             key={pokemon.name}
             style={styles.listItem}
           >
-            <Link to={`/pokemon/${pokemon.name}`} style={styles.link}>
+            <Link
+              to={`/pokemon/${pokemon.name}`}
+              style={styles.link}
+              onClick={() => handleViewPokemon(pokemon.name)}
+            >
               <span
                 onMouseOver={(e) => e.currentTarget.style["color"] = "gray"}
                 onMouseOut={(e) => e.currentTarget.style["color"] = "unset"}
@@ -106,6 +115,10 @@ const PokemonListPage: FunctionComponent = () => {
       </div>
     </main>
   );
+
+  function handleViewPokemon(pokemon: string): void {
+    setRecentlyViewed((old) => old.includes(pokemon) ? old : [...old, pokemon]);
+  }
 };
 
 export default PokemonListPage;

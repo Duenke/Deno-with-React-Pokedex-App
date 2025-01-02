@@ -1,6 +1,7 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { Styles } from "../../types/styles.ts";
+import { Styles } from "../../types/Styles.ts";
+import { RecentContext } from "../../contexts/RecentContext.tsx";
 
 const styles: Styles = {
   nav: {
@@ -14,9 +15,15 @@ const styles: Styles = {
     gap: "4px",
     listStyle: "none",
   },
+  link: {
+    textDecoration: "none",
+    color: "inherit",
+  },
 };
 
 const Nav: FunctionComponent = () => {
+  const [recentlyViewed, _] = useContext(RecentContext);
+
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   const navWidth = isCollapsed ? "auto" : "15em";
@@ -28,9 +35,33 @@ const Nav: FunctionComponent = () => {
         {navButton}
       </button>
       <ul style={styles.ul}>
-        <Link to={"/"}>Home</Link>
-        <Link to={"/pokemon-list"}>Pokemon List</Link>
+        <li>
+          <Link to={"/"} style={styles.link}>
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to={"/pokemon-list"} style={styles.link}>
+            Pokemon List
+          </Link>
+        </li>
       </ul>
+      <br />
+      {recentlyViewed.length > 0 &&
+        (
+          <>
+            <span>Recently Viewed:</span>
+            <ul style={{ ...styles.ul, paddingLeft: ".5em" }}>
+              {recentlyViewed.map((pokemon) => (
+                <li>
+                  <Link to={`/pokemon/${pokemon}`} style={styles.link}>
+                    {pokemon}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
     </nav>
   );
 

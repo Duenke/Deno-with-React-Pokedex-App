@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { PokeAPI } from "pokeapi-types";
-import { Styles } from "../types/styles.ts";
+import { Styles } from "../types/Styles.ts";
 import { useParams } from "react-router-dom";
 
 const styles: Styles = {
@@ -18,6 +18,9 @@ const styles: Styles = {
   },
 };
 
+/**
+ * All page components must be wrapped in a top level `<main></main>`.
+ */
 const PokemonPage: FunctionComponent = () => {
   const { name } = useParams();
 
@@ -45,7 +48,7 @@ const PokemonPage: FunctionComponent = () => {
         response.json()
           .then((json: PokeAPI.Pokemon) => setPokemon(json))
       );
-  }, []);
+  }, [name]);
 
   return (
     <main style={styles.main}>
