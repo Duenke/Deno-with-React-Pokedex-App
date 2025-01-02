@@ -6,11 +6,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import {
-  AboutPage,
-  AuthorizedPage,
-  GridPage,
   HomePage,
   PageLayout,
+  PokemonListPage,
+  PokemonPage,
 } from "./pages/index.tsx";
 
 const App: FunctionComponent = () => {
@@ -20,7 +19,8 @@ const App: FunctionComponent = () => {
         createRoutesFromElements(
           <Route element={<PageLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="about" element={<AboutPage />} />
+            <Route path="pokemon-list" element={<PokemonListPage />} />
+            <Route path="pokemon/:name" element={<PokemonPage />} />
           </Route>,
         ),
       )}

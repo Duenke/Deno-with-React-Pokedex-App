@@ -1,14 +1,16 @@
-import { CSSProperties, FunctionComponent } from "react";
-import Counter from "../components/Counter.tsx";
-
-type Styles = { [key: string]: CSSProperties };
+import { FunctionComponent } from "react";
+import { Styles } from "../types/styles.ts";
 
 const styles: Styles = {
   main: {
     display: "grid",
-    alignContent: "center",
+    alignContent: "start",
     justifyContent: "center",
     border: "solid white 1px",
+  },
+  h1: {
+    fontSize: "3em",
+    paddingBottom: "10px",
   },
 };
 
@@ -18,7 +20,16 @@ const styles: Styles = {
 const HomePage: FunctionComponent = () => {
   return (
     <main style={styles.main}>
-      <Counter />
+      <h1 style={styles.h1}>Welcome to my newest Pokedex!</h1>
+      <p>
+        In this version of the Pokedex App, I want to explore some of the latest
+        tech available today.
+      </p>
+      <p>Tech like:</p>
+      <p>Deno for a Node alternative runtime.</p>
+      <p>Vite for servering and bundling the code.</p>
+      <p>React 18.</p>
+      <p>and React-Router v6.</p>
     </main>
   );
 };

@@ -1,7 +1,6 @@
-import { CSSProperties, FunctionComponent, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { Link } from "react-router-dom";
-
-type Styles = { [key: string]: CSSProperties };
+import { Styles } from "../../types/styles.ts";
 
 const styles: Styles = {
   nav: {
@@ -30,9 +29,7 @@ const Nav: FunctionComponent = () => {
       </button>
       <ul style={styles.ul}>
         <Link to={"/"}>Home</Link>
-        <Link to={"/grid"}>Grid</Link>
-        <Link to={"/about"}>About</Link>
-        <Link to={"/authorized"}>Authorized</Link>
+        <Link to={"/pokemon-list"}>Pokemon List</Link>
       </ul>
     </nav>
   );

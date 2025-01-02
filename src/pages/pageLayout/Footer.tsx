@@ -1,12 +1,12 @@
-import { CSSProperties, FunctionComponent } from "react";
-
-type Styles = { [key: string]: CSSProperties };
+import { FunctionComponent } from "react";
+import { Styles } from "../../types/styles.ts";
 
 const styles: Styles = {
   footer: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
+    paddingInline: "1em",
     border: "solid white 1px",
   },
 };
@@ -14,9 +14,7 @@ const styles: Styles = {
 const Footer: FunctionComponent = () => {
   return (
     <footer style={styles.footer}>
-      <h1>footer</h1>
-      <h1>footer</h1>
-      <h1>footer</h1>
+      <p>just scootin' around with Deno + React + Poke API...</p>
     </footer>
   );
 };
