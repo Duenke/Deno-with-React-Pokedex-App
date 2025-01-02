@@ -1,4 +1,4 @@
-# DenoViteReact
+# Deno + React: Pokedex App
 
 Deno + Vite + React + TypeScript
 

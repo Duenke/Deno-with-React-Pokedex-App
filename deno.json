@@ -14,10 +14,7 @@
   },
   "imports": {
     "#common": "./src/components/common",
-    "@azure/msal-browser": "npm:@azure/msal-browser@^3.28.0",
-    "@azure/msal-react": "npm:@azure/msal-react@^2.2.0",
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.0",
-    "@fluentui/react-components": "npm:@fluentui/react-components@^9.56.8",
     "@types/react": "npm:@types/react@^18.3.12",
     "@types/react-dom": "npm:@types/react-dom@^18.3.1",
     "@vitejs/plugin-react": "npm:@vitejs/plugin-react@^4.3.4",

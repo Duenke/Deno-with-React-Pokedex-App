@@ -1,5 +1,5 @@
 import { CSSProperties, FunctionComponent } from "react";
-import Counter from "../common/Counter.tsx";
+import Counter from "../components/common/Counter.tsx";
 
 type Styles = { [key: string]: CSSProperties };
 

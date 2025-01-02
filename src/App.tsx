@@ -1,29 +1,32 @@
-import { MsalProvider } from "@azure/msal-react";
-import { IPublicClientApplication } from "@azure/msal-browser";
-import { AboutPage, AuthorizedPage, GridPage, HomePage, PageLayout } from "./components/pages/index.tsx";
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import { FunctionComponent } from "react";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import {
+  AboutPage,
+  AuthorizedPage,
+  GridPage,
+  HomePage,
+  PageLayout,
+} from "./pages/index.tsx";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route element={<PageLayout />}>
-      <Route index element={<HomePage />} />
-      <Route path="grid" element={<GridPage />} />
-      <Route path="about" element={<AboutPage />} />
-      <Route path="authorized" element={<AuthorizedPage />} />
-    </Route>
-  )
-);
-
-type AppProps = {
-  msalInstance: IPublicClientApplication;
-};
-
-const App: FunctionComponent<AppProps> = ({ msalInstance }) => {
+const App: FunctionComponent = () => {
   return (
-    <MsalProvider instance={msalInstance}>
-      <RouterProvider router={router} />
-    </MsalProvider>
+    <RouterProvider
+      router={createBrowserRouter(
+        createRoutesFromElements(
+          <Route element={<PageLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="grid" element={<GridPage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="authorized" element={<AuthorizedPage />} />
+          </Route>,
+        ),
+      )}
+    />
   );
 };
 
