@@ -20,9 +20,7 @@ const App: FunctionComponent = () => {
         createRoutesFromElements(
           <Route element={<PageLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="grid" element={<GridPage />} />
             <Route path="about" element={<AboutPage />} />
-            <Route path="authorized" element={<AuthorizedPage />} />
           </Route>,
         ),
       )}
