@@ -1,0 +1,42 @@
+.main {
+  display: grid;
+  grid-template-rows: 50px 1fr 50px;
+  overflow: auto;
+}
+
+.titleBar {
+  place-content: center;
+  padding-inline: 1em;
+  border: solid white 1px;
+}
+
+.list {
+  list-style-type: none;
+  text-decoration: none;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 4px;
+}
+
+.listItem {
+  font-size: 2em;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+
+  span:hover {
+    color: gray;
+  }
+}
+
+.pageBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  border: solid white 1px;
+}

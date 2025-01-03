@@ -1,0 +1,11 @@
+.main {
+  display: grid;
+  align-content: start;
+  justify-content: center;
+  border: solid white 1px;
+}
+
+.h1 {
+  font-size: 3em;
+  padding-bottom: 10px;
+}

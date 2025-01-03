@@ -1,44 +1,8 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import { PokeAPI } from "pokeapi-types";
-import { Styles } from "../types/Styles.ts";
 import { Link } from "react-router-dom";
-import { RecentContext } from "../contexts/RecentContext.tsx";
-
-const styles: Styles = {
-  main: {
-    display: "grid",
-    gridTemplateRows: "50px 1fr 50px",
-    overflow: "auto",
-  },
-  titleBar: {
-    placeContent: "center",
-    paddingInline: "1em",
-    border: "solid white 1px",
-  },
-  list: {
-    listStyleType: "none",
-    textDecoration: "none",
-    padding: "1em",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-    gap: "4px",
-  },
-  listItem: {
-    fontSize: "2em",
-  },
-  link: {
-    textDecoration: "none",
-    color: "inherit",
-  },
-  pageBar: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "2em",
-    border: "solid white 1px",
-  },
-};
+import { RecentContext } from "../../contexts/RecentContext.tsx";
+import styles from "./PokemonListPage.module.css";
 
 /**
  * All page components must be wrapped in a top level `<main></main>`.
@@ -66,33 +30,30 @@ const PokemonListPage: FunctionComponent = () => {
   }, [listUrl]);
 
   return (
-    <main style={styles.main}>
-      <div style={styles.titleBar}>
+    <main className={styles.main}>
+      <div className={styles.titleBar}>
         <h1>Pokemon List</h1>
         <h2>Choose Your Pokemon!</h2>
       </div>
-      <ul style={styles.list}>
+      <ul className={styles.list}>
         {pokemonList?.results.map((pokemon) => (
           <li
             key={pokemon.name}
-            style={styles.listItem}
+            className={styles.listItem}
           >
             <Link
               to={`/pokemon/${pokemon.name}`}
-              style={styles.link}
+              className={styles.link}
               onClick={() => handleViewPokemon(pokemon.name)}
             >
-              <span
-                onMouseOver={(e) => e.currentTarget.style["color"] = "gray"}
-                onMouseOut={(e) => e.currentTarget.style["color"] = "unset"}
-              >
+              <span>
                 {pokemon.name}
               </span>
             </Link>
           </li>
         ))}
       </ul>
-      <div style={styles.pageBar}>
+      <div className={styles.pageBar}>
         <button
           onClick={() => {
             setSelectedPage((old) => old - 1);

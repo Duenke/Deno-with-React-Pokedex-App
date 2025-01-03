@@ -1,0 +1,14 @@
+.main {
+  padding-inline: 1em;
+  border: solid white 1px;
+}
+
+.h1 {
+  font-size: 3em;
+  padding-bottom: 10px;
+  margin-inline: auto;
+}
+
+.pix {
+  display: flex;
+}

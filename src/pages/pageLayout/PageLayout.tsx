@@ -1,9 +1,7 @@
-import "./PageLayout.css";
 import { FunctionComponent } from "react";
 import { Outlet } from "react-router-dom";
-import Header from "./Header.tsx";
-import Footer from "./Footer.tsx";
-import Nav from "./Nav.tsx";
+import { Footer, Header, Nav } from "../../components/index.tsx";
+import styles from "./PageLayout.module.css";
 
 /**
  * This page layout requires a top level structure like:
@@ -16,7 +14,7 @@ import Nav from "./Nav.tsx";
  */
 const PageLayout: FunctionComponent = () => {
   return (
-    <div id="layout">
+    <div className={styles.layout}>
       <Header />
       <Nav />
       <Outlet />

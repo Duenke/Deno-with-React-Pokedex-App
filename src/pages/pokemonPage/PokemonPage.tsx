@@ -1,22 +1,7 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { PokeAPI } from "pokeapi-types";
-import { Styles } from "../types/Styles.ts";
 import { useParams } from "react-router-dom";
-
-const styles: Styles = {
-  main: {
-    paddingInline: "1em",
-    border: "solid white 1px",
-  },
-  h1: {
-    fontSize: "3em",
-    paddingBottom: "10px",
-    marginInline: "auto",
-  },
-  pix: {
-    display: "flex",
-  },
-};
+import styles from "./PokemonPage.module.css";
 
 /**
  * All page components must be wrapped in a top level `<main></main>`.
@@ -51,11 +36,11 @@ const PokemonPage: FunctionComponent = () => {
   }, [name]);
 
   return (
-    <main style={styles.main}>
-      <h1 style={styles.h1}>{name}</h1>
+    <main className={styles.main}>
+      <h1 className={styles.h1}>{name}</h1>
       {pokemon && (
         <>
-          <div style={styles.pix}>
+          <div className={styles.pix}>
             {sortedMales
               .map((sprite, index) => (
                 <picture key={index}>
@@ -67,7 +52,7 @@ const PokemonPage: FunctionComponent = () => {
                 </picture>
               ))}
           </div>
-          <div style={styles.pix}>
+          <div className={styles.pix}>
             {sortedFemales
               .map((sprite, index) => (
                 <picture key={index}>

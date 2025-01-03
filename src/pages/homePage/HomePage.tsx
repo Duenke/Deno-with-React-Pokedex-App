@@ -1,26 +1,13 @@
 import { FunctionComponent } from "react";
-import { Styles } from "../types/Styles.ts";
-
-const styles: Styles = {
-  main: {
-    display: "grid",
-    alignContent: "start",
-    justifyContent: "center",
-    border: "solid white 1px",
-  },
-  h1: {
-    fontSize: "3em",
-    paddingBottom: "10px",
-  },
-};
+import styles from "./HomePage.module.css";
 
 /**
  * All page components must be wrapped in a top level `<main></main>`.
  */
 const HomePage: FunctionComponent = () => {
   return (
-    <main style={styles.main}>
-      <h1 style={styles.h1}>Welcome to my newest Pokedex!</h1>
+    <main className={styles.main}>
+      <h1 className={styles.h1}>Welcome to my newest Pokedex!</h1>
       <p>
         In this version of the Pokedex App, I want to explore some of the latest
         tech available today.

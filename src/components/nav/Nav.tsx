@@ -1,25 +1,7 @@
 import { FunctionComponent, useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { Styles } from "../../types/Styles.ts";
 import { RecentContext } from "../../contexts/RecentContext.tsx";
-
-const styles: Styles = {
-  nav: {
-    border: "solid white 1px",
-    padding: "1em",
-  },
-  button: { width: "2em", marginBottom: "4px" },
-  ul: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "4px",
-    listStyle: "none",
-  },
-  link: {
-    textDecoration: "none",
-    color: "inherit",
-  },
-};
+import styles from "./Nav.module.css";
 
 const Nav: FunctionComponent = () => {
   const [recentlyViewed, _] = useContext(RecentContext);
@@ -30,18 +12,18 @@ const Nav: FunctionComponent = () => {
   const navButton = isCollapsed ? "+" : "-";
 
   return (
-    <nav style={{ ...styles.nav, width: navWidth }}>
-      <button style={styles.button} onClick={handleClick}>
+    <nav className={styles.nav} style={{ width: navWidth }}>
+      <button className={styles.button} onClick={handleClick}>
         {navButton}
       </button>
-      <ul style={styles.ul}>
+      <ul className={styles.ul}>
         <li>
-          <Link to={"/"} style={styles.link}>
+          <Link to={"/"} className={styles.link}>
             Home
           </Link>
         </li>
         <li>
-          <Link to={"/pokemon-list"} style={styles.link}>
+          <Link to={"/pokemon-list"} className={styles.link}>
             Pokemon List
           </Link>
         </li>
@@ -51,10 +33,10 @@ const Nav: FunctionComponent = () => {
         (
           <>
             <span>Recently Viewed:</span>
-            <ul style={{ ...styles.ul, paddingLeft: ".5em" }}>
+            <ul className={styles.ul} style={{ paddingLeft: ".5em" }}>
               {recentlyViewed.map((pokemon) => (
                 <li>
-                  <Link to={`/pokemon/${pokemon}`} style={styles.link}>
+                  <Link to={`/pokemon/${pokemon}`} className={styles.link}>
                     {pokemon}
                   </Link>
                 </li>

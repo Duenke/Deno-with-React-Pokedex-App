@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 1em;
+  border: solid white 1px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,0 +1,21 @@
+.nav {
+  border: solid white 1px;
+  padding: 1em;
+}
+
+.button {
+  width: 2em;
+  margin-bottom: 4px;
+}
+
+.ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
