@@ -14,7 +14,7 @@ import {
 import { RecentContext } from "./contexts/RecentContext.tsx";
 
 const App: FunctionComponent = () => {
-  const recentlyViewed = useState<string[]>([]);
+  const recentlyViewed = useState<Set<string>>(new Set<string>());
 
   return (
     <RecentContext.Provider value={recentlyViewed}>

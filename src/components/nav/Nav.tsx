@@ -1,42 +1,58 @@
 import { FunctionComponent, useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { RecentContext } from "../../contexts/RecentContext.tsx";
 import styles from "./Nav.module.css";
 
 const Nav: FunctionComponent = () => {
+  const { pathname } = useLocation();
   const [recentlyViewed, _] = useContext(RecentContext);
 
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
-  const navWidth = isCollapsed ? "auto" : "15em";
+  const recentArray: string[] = recentlyViewed.keys().toArray();
+
+  const shrinkNav = isCollapsed ? "collapsed" : "open";
   const navButton = isCollapsed ? "+" : "-";
 
   return (
-    <nav className={styles.nav} style={{ width: navWidth }}>
+    <nav className={`${styles.nav} ${styles[shrinkNav]}`}>
       <button className={styles.button} onClick={handleClick}>
         {navButton}
       </button>
       <ul className={styles.ul}>
         <li>
-          <Link to={"/"} className={styles.link}>
+          <Link
+            to={"/"}
+            className={`${styles.link} ${pathname === "/" && styles.active}`}
+          >
             Home
           </Link>
         </li>
         <li>
-          <Link to={"/pokemon-list"} className={styles.link}>
+          <Link
+            to={"/pokemon-list"}
+            className={`${styles.link} ${
+              pathname === "/pokemon-list" && styles.active
+            }`}
+          >
             Pokemon List
           </Link>
         </li>
       </ul>
-      <br />
-      {recentlyViewed.length > 0 &&
+      {recentArray.length > 0 &&
         (
           <>
-            <span>Recently Viewed:</span>
+            <div className={styles.divider}></div>
+            <span>Recently Viewed</span>
             <ul className={styles.ul} style={{ paddingLeft: ".5em" }}>
-              {recentlyViewed.map((pokemon) => (
-                <li>
-                  <Link to={`/pokemon/${pokemon}`} className={styles.link}>
+              {recentArray.map((pokemon, index) => (
+                <li key={index}>
+                  <Link
+                    to={`/pokemon/${pokemon}`}
+                    className={`${styles.link} ${
+                      pathname === `/pokemon/${pokemon}` && styles.active
+                    }`}
+                  >
                     {pokemon}
                   </Link>
                 </li>

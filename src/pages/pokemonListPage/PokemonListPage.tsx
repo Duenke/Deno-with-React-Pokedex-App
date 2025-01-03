@@ -1,15 +1,12 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import { PokeAPI } from "pokeapi-types";
 import { Link } from "react-router-dom";
-import { RecentContext } from "../../contexts/RecentContext.tsx";
 import styles from "./PokemonListPage.module.css";
 
 /**
  * All page components must be wrapped in a top level `<main></main>`.
  */
 const PokemonListPage: FunctionComponent = () => {
-  const [_, setRecentlyViewed] = useContext(RecentContext);
-
   const [listUrl, setListUrl] = useState<string>(
     "https://pokeapi.co/api/v2/pokemon",
   );
@@ -44,7 +41,6 @@ const PokemonListPage: FunctionComponent = () => {
             <Link
               to={`/pokemon/${pokemon.name}`}
               className={styles.link}
-              onClick={() => handleViewPokemon(pokemon.name)}
             >
               <span>
                 {pokemon.name}
@@ -76,10 +72,6 @@ const PokemonListPage: FunctionComponent = () => {
       </div>
     </main>
   );
-
-  function handleViewPokemon(pokemon: string): void {
-    setRecentlyViewed((old) => old.includes(pokemon) ? old : [...old, pokemon]);
-  }
 };
 
 export default PokemonListPage;

@@ -1,11 +1,38 @@
 .nav {
-  border: solid white 1px;
   padding: 1em;
+  overflow: auto;
+  color: rgb(21, 128, 237);
+}
+
+.collapsed {
+  width: auto;
+}
+
+.open {
+  width: 15em;
+
+  @media (width < 720px) {
+    width: auto;
+  }
 }
 
 .button {
   width: 2em;
-  margin-bottom: 4px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(0, 116, 236, 0.9294117647);
+  border-radius: 4px;
+  background-color: whitesmoke;
+
+  @media (width < 720px) {
+    display: none;
+  }
+}
+
+.divider {
+  height: 1px;
+  width: 50%;
+  background-color: rgb(223, 222, 222);
+  margin-block: 0.5em;
 }
 
 .ul {
@@ -13,9 +40,24 @@
   flex-direction: column;
   gap: 4px;
   list-style: none;
+
+  @media (width < 720px) {
+    flex-direction: row;
+  }
 }
 
 .link {
   text-decoration: none;
   color: inherit;
+
+  &:hover, :focus-visible {
+    text-decoration: underline;
+    background-color: rgba(187, 239, 253, 0.3);
+  }
+}
+
+.active {
+  border-left: 2px solid rgba(0, 116, 236, 0.9294117647);
+  padding-left: 4px;
+  background-color: rgba(187, 239, 253, 0.3);
 }

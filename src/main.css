@@ -14,9 +14,10 @@
 }
 
 html {
-  color-scheme: dark light; /* Default dark */
+  /* color-scheme: dark light; Default dark */
   hanging-punctuation: first last; /* Not supported in Chrome */
   transition-behavior: allow-discrete;
+  color: rgb(38, 50, 56);
 }
 
 body {

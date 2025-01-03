@@ -3,7 +3,8 @@
   align-items: center;
   justify-content: space-between;
   padding-inline: 1em;
-  border: solid white 1px;
+  color: white;
+  background-color: rgb(239, 83, 80);
 }
 
 .link {

@@ -10,12 +10,9 @@
   @media (width < 720px) {
     grid-template:
       "header" 50px
+      "nav" auto
       "main" 1fr
       "footer" 50px / auto;
-
-    nav {
-      display: none;
-    }
   }
 
   header {
@@ -37,4 +34,6 @@
     /* background-color: red; */
     grid-area: footer;
   }
+
+  font-family: Lato, sans-serif;
 }

@@ -1,6 +1,14 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useContext, useEffect, useState } from "react";
 import { PokeAPI } from "pokeapi-types";
 import { useParams } from "react-router-dom";
+import { RecentContext } from "../../contexts/RecentContext.tsx";
+import {
+  Abilities,
+  BaseStats,
+  Moves,
+  RotatingSprite,
+  Types,
+} from "../../components/index.tsx";
 import styles from "./PokemonPage.module.css";
 
 /**
@@ -8,31 +16,50 @@ import styles from "./PokemonPage.module.css";
  */
 const PokemonPage: FunctionComponent = () => {
   const { name } = useParams();
+  const [recentlyViewed, setRecentlyViewed] = useContext(RecentContext);
 
   const [pokemon, setPokemon] = useState<
     PokeAPI.Pokemon
   >();
 
-  const sortedMales = [
-    pokemon?.sprites.front_default,
-    pokemon?.sprites.back_default,
-    pokemon?.sprites.front_shiny,
-    pokemon?.sprites.back_shiny,
-  ].filter((s) => !!s);
-
-  const sortedFemales = [
-    pokemon?.sprites.front_female,
-    pokemon?.sprites.back_female,
-    pokemon?.sprites.front_shiny_female,
-    pokemon?.sprites.back_shiny_female,
-  ].filter((s) => !!s);
+  const stats = {
+    ...pokemon,
+    abilities: undefined,
+    base_experience: undefined,
+    id: undefined,
+    height: undefined,
+    weight: undefined,
+    sprites: undefined,
+    name: undefined,
+    cries: undefined,
+    forms: undefined,
+    game_indices: undefined,
+    location_area_encounters: undefined,
+    is_default: undefined,
+    held_items: undefined,
+    moves: undefined,
+    order: undefined,
+    stats: undefined,
+  };
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-      .then((response: Response) =>
-        response.json()
-          .then((json: PokeAPI.Pokemon) => setPokemon(json))
-      );
+    if (name) {
+      fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        .then((response: Response) =>
+          response.json()
+            .then((json: PokeAPI.Pokemon) => {
+              setPokemon(json);
+              // @ts-ignore
+              const audio = new Audio(json.cries.latest);
+              audio.play();
+              audio.remove();
+            })
+        );
+
+      if (!recentlyViewed.has(name)) {
+        setRecentlyViewed(new Set(recentlyViewed).add(name));
+      }
+    }
   }, [name]);
 
   return (
@@ -40,35 +67,21 @@ const PokemonPage: FunctionComponent = () => {
       <h1 className={styles.h1}>{name}</h1>
       {pokemon && (
         <>
-          <div className={styles.pix}>
-            {sortedMales
-              .map((sprite, index) => (
-                <picture key={index}>
-                  <source
-                    srcSet={sprite as string}
-                    media="(min-width: 800px)"
-                  />
-                  <img src={sprite as string} alt={`${name} sprite ${index}`} />
-                </picture>
-              ))}
-          </div>
-          <div className={styles.pix}>
-            {sortedFemales
-              .map((sprite, index) => (
-                <picture key={index}>
-                  <source
-                    srcSet={sprite as string}
-                    media="(min-width: 800px)"
-                  />
-                  <img src={sprite as string} alt={`${name} sprite ${index}`} />
-                </picture>
-              ))}
-          </div>
+          <RotatingSprite
+            pokemonName={pokemon.name}
+            pokemonSprites={pokemon.sprites}
+          />
           <div>
             <p>Id: {pokemon.id}</p>
             <p>Height: {pokemon.height}</p>
             <p>Weight: {pokemon.weight}</p>
             <p>Base Experience: {pokemon.base_experience}</p>
+          </div>
+          <div className={styles.stats}>
+            <Types types={pokemon.types} />
+            <Abilities abilities={pokemon.abilities} />
+            <BaseStats basestats={pokemon.stats} />
+            <Moves moves={pokemon.moves} />
           </div>
         </>
       )}

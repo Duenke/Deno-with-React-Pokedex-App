@@ -9,6 +9,14 @@
   margin-inline: auto;
 }
 
-.pix {
-  display: flex;
+.stats {
+  display: grid;
+  gap: 1em;
+  padding: 1em;
+  background-color: whitesmoke;
+
+  li {
+    list-style-position: inside;
+    list-style-type: circle;
+  }
 }

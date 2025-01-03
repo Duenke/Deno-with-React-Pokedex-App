@@ -1,0 +1,11 @@
+.pix {
+  display: grid;
+  justify-content: start;
+  grid-template: "sprite" auto;
+}
+
+/* This stacks all sprites into one spot. */
+.sprite {
+  grid-area: sprite;
+  transition: opacity 0.4s;
+}

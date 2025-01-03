@@ -12,11 +12,12 @@ const HomePage: FunctionComponent = () => {
         In this version of the Pokedex App, I want to explore some of the latest
         tech available today.
       </p>
+      <br />
       <p>Tech like:</p>
-      <p>Deno for a Node alternative runtime.</p>
-      <p>Vite for servering and bundling the code.</p>
-      <p>React 18.</p>
-      <p>and React-Router v6.</p>
+      <p>✨ Deno for a Node alternative runtime</p>
+      <p>✨ Vite for servering and bundling the code</p>
+      <p>✨ React 18</p>
+      <p>✨ React-Router v6</p>
     </main>
   );
 };
