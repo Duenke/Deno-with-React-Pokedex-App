@@ -80,7 +80,7 @@ const PokemonPage: FunctionComponent = () => {
           <div className={styles.stats}>
             <Types types={pokemon.types} />
             <Abilities abilities={pokemon.abilities} />
-            <BaseStats basestats={pokemon.stats} />
+            <BaseStats baseStats={pokemon.stats} />
             <Moves moves={pokemon.moves} />
           </div>
         </>

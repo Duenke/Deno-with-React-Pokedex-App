@@ -2,19 +2,28 @@ import { FunctionComponent } from "react";
 import { PokeAPI } from "pokeapi-types";
 
 type BaseStatsProps = {
-  basestats: PokeAPI.Pokemon["stats"];
+  baseStats: PokeAPI.Pokemon["stats"];
 };
 
 const BaseStats: FunctionComponent<BaseStatsProps> = ({
-  basestats,
+  baseStats,
 }) => {
+  const statsMap: Record<string, number> = baseStats.reduce(
+    (acc: Record<string, number>, { stat, base_stat }) => {
+      acc[stat.name] = base_stat;
+      return acc;
+    },
+    {},
+  );
+  const sortedByLevel = Object.entries(statsMap).sort(([, a], [, b]) => b - a);
+
   return (
-    basestats && basestats.length > 0 && (
+    baseStats && baseStats.length > 0 && (
       <div>
         <h3>BaseStats</h3>
         <ul>
-          {basestats.map(({ stat, base_stat }) => {
-            return <li key={stat.name}>{stat.name}{` (${base_stat})`}</li>;
+          {sortedByLevel.map(([statName, statValue]) => {
+            return <li key={statName}>{statName}{` (${statValue})`}</li>;
           })}
         </ul>
       </div>
